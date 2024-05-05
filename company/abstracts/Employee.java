@@ -1,4 +1,6 @@
 package company.abstracts;
+import java.util.Objects;
+
 import company.interfaces.Employable;
 
 
@@ -19,6 +21,10 @@ public abstract class Employee implements Employable
         this.position = position;
     }
 
+    public int getId() 
+    {
+        return id;
+    }
     public String getName() 
     {
         return name;
@@ -40,24 +46,16 @@ public abstract class Employee implements Employable
     }
 
     @Override
-    public int hashCode() 
-    {
-        return id;
+
+    public int hashCode() {
+        return Objects.hash(id);
     }
     
     @Override
-    public boolean equals(Object obj) 
-    {
-        if (obj == null || getClass() != obj.getClass()) 
-        {
-            return false;
-        }
-        if (this == obj) 
-        {
-            return true;
-        }
-        Employee other = (Employee) obj;
-        return id == other.id;
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Employee employee = (Employee) obj;
+        return id == employee.id;
     }
-
-}
+    }
